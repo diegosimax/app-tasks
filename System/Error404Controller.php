@@ -1,0 +1,12 @@
+<?php
+
+    defined('APP_NAME') OR exit(utf8_encode('Você não tem acesso a esta aplicação!'));
+
+    class Error404Controller
+    {
+        public function index()
+        {
+            echo "ERROR PAGE 404";
+        }
+    }
+?>
