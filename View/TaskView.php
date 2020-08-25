@@ -62,7 +62,6 @@
 </body>
 </html>
 
-
 <script>
     
     $("#formTask").submit(function(e) {
@@ -84,7 +83,7 @@
 					window.location.href = "<?=constant('APP_URL')?>task";
 				}
             }
-		});
+		    });
     });
 
     const propriedades = document.querySelector("#propriedades")

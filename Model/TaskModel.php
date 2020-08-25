@@ -49,6 +49,14 @@
                 return $this->conexao->lastInsertId();
             }
         }
+        
+        public function deletar()
+        {
+            $this->query = "DELETE FROM task WHERE IdTask = {$this->idTask}";
+            $this->execute();
+            $this->query = "DELETE FROM task_propriedade WHERE IdTask = {$this->idTask}";
+            $this->execute();
+        }
 
     }
 

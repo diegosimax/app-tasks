@@ -97,9 +97,14 @@
            
         }
 
-        
+        public function excluir()
+        {           
+            $this->task->idTask = isset($_POST['idTask']) ? $_POST['idTask'] : null;
+            if (!is_null($this->task->idTask)) {
+                $this->task->deletar();
+            }
+        }
 
-        
     }
 
 ?> 
