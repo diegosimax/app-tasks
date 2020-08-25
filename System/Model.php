@@ -9,6 +9,7 @@
 
         private static $conexao;
         public $query;
+        public $table;
 
         public function __construct()
         {
@@ -28,10 +29,32 @@
         {
             if ($conexao = $this->getInstance()) {
                 $stmt = $conexao->prepare($this->query);
-                if ($stmt->execute()){ 
+                if ($stmt->execute()) { 
                     $result = $stmt->fetchAll(PDO::FETCH_OBJ);
                     return $result;
                 }
+            }
+        }
+
+        // public function getColumns()
+        // {
+        //     if ($conexao = $this->getInstance()) {
+        //         $stmt = $conexao->prepare('SHOW COLUMNS FROM ' . $this->table);
+        //         if ($stmt->execute()){ 
+        //             $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+        //             return $result;
+        //         }
+        //     }
+        // }
+
+        public function execute()
+        {
+            if ($conexao = $this->getInstance()) {
+                $stmt = $conexao->prepare($this->query);
+                if ($stmt->execute()) { 
+                    return true;
+                }
+                return false;
             }
         }
 

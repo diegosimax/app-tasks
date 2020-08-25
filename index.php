@@ -1,10 +1,12 @@
 <?php
 
+	session_start();
+
 	//Nome da Aplicação
 	define ('APP_NAME', 'Jestor Tasks');
 	
 	//URL da Aplicação
-	define ('APP_URL', 'http://localhost/jestor/');
+	define ('APP_URL', 'http://localhost/app-tasks/');
 
 	//Registro as classes para mapeamento padrão MVC
 	spl_autoload_register(function ($className) {

@@ -4,28 +4,44 @@
 	<title>Jestor Tasks</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
+	<!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="<?=constant('APP_URL')?>View/images/icons/favicon.ico"/>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?=constant('APP_URL')?>View/vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?=constant('APP_URL')?>View/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?=constant('APP_URL')?>View/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?=constant('APP_URL')?>View/vendor/animate/animate.css">
-<!--===============================================================================================-->	
+	<!--===============================================================================================-->	
 	<link rel="stylesheet" type="text/css" href="<?=constant('APP_URL')?>View/vendor/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?=constant('APP_URL')?>View/vendor/animsition/css/animsition.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?=constant('APP_URL')?>View/vendor/select2/select2.min.css">
-<!--===============================================================================================-->	
+	<!--===============================================================================================-->	
 	<link rel="stylesheet" type="text/css" href="<?=constant('APP_URL')?>View/vendor/daterangepicker/daterangepicker.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?=constant('APP_URL')?>View/css/util.css">
 	<link rel="stylesheet" type="text/css" href="<?=constant('APP_URL')?>View/css/main.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
+	<script src="<?=constant('APP_URL')?>View/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="<?=constant('APP_URL')?>View/vendor/animsition/js/animsition.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="<?=constant('APP_URL')?>View/vendor/bootstrap/js/popper.js"></script>
+	<script src="<?=constant('APP_URL')?>View/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="<?=constant('APP_URL')?>View/vendor/select2/select2.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="<?=constant('APP_URL')?>View/vendor/daterangepicker/moment.min.js"></script>
+	<script src="<?=constant('APP_URL')?>View/vendor/daterangepicker/daterangepicker.js"></script>
+	<!--===============================================================================================-->
+	<script src="<?=constant('APP_URL')?>View/vendor/countdowntime/countdowntime.js"></script>
+	<!--===============================================================================================-->
+	<script src="<?=constant('APP_URL')?>View/js/main.js"></script>
+	<!--===============================================================================================-->
 </head>
 <body>
 	
@@ -59,27 +75,6 @@
 			</div>
 		</div>
 	</div>
-	
-
-	<div id="dropDownSelect1"></div>
-	
-<!--===============================================================================================-->
-	<script src="<?=constant('APP_URL')?>View/vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-	<script src="<?=constant('APP_URL')?>View/vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
-	<script src="<?=constant('APP_URL')?>View/vendor/bootstrap/js/popper.js"></script>
-	<script src="<?=constant('APP_URL')?>View/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-	<script src="<?=constant('APP_URL')?>View/vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-	<script src="<?=constant('APP_URL')?>View/vendor/daterangepicker/moment.min.js"></script>
-	<script src="<?=constant('APP_URL')?>View/vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
-	<script src="<?=constant('APP_URL')?>View/vendor/countdowntime/countdowntime.js"></script>
-<!--===============================================================================================-->
-	<script src="<?=constant('APP_URL')?>View/js/main.js"></script>
-
 </body>
 </html>
 
@@ -92,7 +87,7 @@
         $.ajax({
             type: "POST",
             dataType: 'json',
-            url: "<?=constant('APP_URL')?>LoginController/logarUsuario",
+            url: "<?=constant('APP_URL')?>Login/logarUsuario",
             data: form.serialize(),
             success: function(response)
             {
@@ -103,7 +98,7 @@
 				} 
 
 				if (response.success === true) {
-					window.location.href = "<?=constant('APP_URL')?>UserController";
+					window.location.href = "<?=constant('APP_URL')?>task";
 				}
             }
 		});
