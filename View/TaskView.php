@@ -42,6 +42,8 @@
       </div>
     <?php } ?>
     <div id="propriedades"></div>
+    <div id="mensagem" name="mensagem" align="center"></div>
+    <br>
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-1">
         <button type="submit" class="btn btn-primary" <? if(!$this->edicao) { echo "disabled"; } ?>>Salvar</button>
@@ -51,7 +53,7 @@
       </div>
       <div class="col-sm-offset-2 col-sm-1">
         <button type="submit" class="btn btn-primary" id="adicionar" <? if(!$this->edicao) { echo "disabled"; } ?>>Adicionar Propriedade</button>
-      </div>
+      </div>     
     </div>
     <input type="hidden" value="<?=$this->task->IdTask?>" id="idTask" name="idTask"/>
   </form>
@@ -64,27 +66,31 @@
 
 <script>
     
-    $("#formTask").submit(function(e) {
-        e.preventDefault();
-        var form = $(this);
-
-        $.ajax({
-            type: "POST",
-            dataType: 'json',
-            url: "<?=constant('APP_URL')?>Task/salvar",
-            data: form.serialize(),
-            success: function(response) {
-                if (response.success === false) {
-                    if (response.message) {
-						$('#mensagem').html('Senha ou Usuário inválidos!');
-					}
-				} 
-				if (response.success === true) {
-					window.location.href = "<?=constant('APP_URL')?>task";
-				}
-            }
-		    });
+    $(document).ready(function(){       
+        $('#formTask').submit(function(){
+            
+            var formData = new FormData(this);
+            
+            $('#resEditarAnimal').html("<b>Processando...</b>");
+            
+            $.ajax({
+                url: '<?=constant('APP_URL')?>Task/salvar', 
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                type: 'POST'
+            })
+            .done(function(data){   
+              $('#mensagem').html('Tarefa salva com sucesso!');
+            })
+            .fail(function() {         
+                alert( "Posting failed." );             
+            });
+            return false; 
+        });
     });
+
 
     const propriedades = document.querySelector("#propriedades")
 

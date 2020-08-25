@@ -1,8 +1,8 @@
 # jestor-tasks-app
 
-A aplicação foi construída com o conceito de motor, uma vez que não podia usar framework. Criei alguns conceitos de rotas com dispatcher e URL amigável.
-
-Apliquei no motor o conceito de MVC (Model, View e Component).
+Realizei a construção de um motor para o core da aplicação. 
+Criei no motor os conceitos de rotas com dispatcher, URL amigável e o conceito de MVC (Model, View e Controller).
+No motor também fiz o mapeamento das classes responsáveis pelo MVC.
 
 ## SCRIPT DE BANCO
 
@@ -149,3 +149,11 @@ Email -> antonio@globo.com
 Senha -> jestor2
 ```
 
+## ALTERAR O ARQUIVO index.php DA RAÍZ DO PROJETO
+``` 
+//Nome da Aplicação
+define ('APP_NAME', 'Jestor Tasks');
+	
+//URL da Aplicação
+define ('APP_URL', 'http://localhost/app-tasks/');
+```
