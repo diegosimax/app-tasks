@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Visualizar</title>
+  <title>Tarefa</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -13,31 +13,31 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h4><?=$this->task->Assunto?></h4>
+      <h4>Tarefa</h4>
       <form class="form-horizontal" id="formTask" name="formTask">
     <div class="form-group">
-      <label class="control-label col-sm-2">Assunto:</label>
+      <label for="validationCustom01" class="control-label col-sm-2">Assunto:</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="assunto" placeholder="Assunto" name="assunto" value="<?=$this->task->Assunto?>" <? if(!$this->edicao) { echo "disabled"; } ?>>
+        <input type="text" class="form-control" id="assunto" placeholder="Assunto" name="assunto" value="<?=$this->task->Assunto?>" <? if(!$this->edicao) { echo "disabled"; } ?> required>
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2">Descrição:</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="descricao" placeholder="Descrição" name="descricao" value="<?=$this->task->Descricao?>" <? if(!$this->edicao) { echo "disabled"; } ?>>
+        <input type="text" class="form-control" id="descricao" placeholder="Descrição" name="descricao" value="<?=$this->task->Descricao?>" <? if(!$this->edicao) { echo "disabled"; } ?> required>
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2">Data de Entrega:</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="dataEntrega" placeholder="00/00/0000" name="dataEntrega" value="<?=date("d/m/Y", strtotime($this->task->DataEntrega))?>" <? if(!$this->edicao) { echo "disabled"; } ?>>
+        <input type="text" class="form-control" id="dataEntrega" placeholder="00/00/0000" name="dataEntrega" value="<?=date("d/m/Y", strtotime($this->task->DataEntrega))?>" <? if(!$this->edicao) { echo "disabled"; } ?> required>
       </div>
     </div>
     <?php foreach ($this->propriedades as $propriedade) { ?>
       <div class="form-group">
       <label class="control-label col-sm-2"><?=$propriedade->Nome?>:</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="propriedade_<?=$propriedade->IdPropriedade?>" placeholder="<?=$propriedade->Nome?>" name="propriedade_<?=$propriedade->IdPropriedade?>" value="<?=$propriedade->Valor?>" <? if(!$this->edicao) { echo "disabled"; } ?>>
+        <input type="text" class="form-control" id="propriedades[<?=$propriedade->IdPropriedade?>]" placeholder="<?=$propriedade->Nome?>" name="propriedades[<?=$propriedade->IdPropriedade?>]" value="<?=$propriedade->Valor?>" <? if(!$this->edicao) { echo "disabled"; } ?>>
       </div>
       </div>
     <?php } ?>
@@ -98,7 +98,7 @@
         divPropriedade.classList.add('col-sm-2');
 
         let propriedade = document.createElement("input");
-        propriedade.name = "nomePropriedade[]";
+        propriedade.name = "novoNomePropriedade[]";
         propriedade.placeholder = "Nome da Propriedade";
         propriedade.classList.add('form-control');
         propriedade.type="text";
@@ -109,7 +109,7 @@
         divValor.classList.add('col-sm-10');
 
         let valor = document.createElement("input");
-        valor.name = "valorPropriedade[]";
+        valor.name = "novoValorPropriedade[]";
         valor.placeholder = "Valor";
         valor.classList.add('form-control');
         valor.type="text";

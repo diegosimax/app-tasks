@@ -21,6 +21,7 @@
 	<div class="row">
     <div class="col-md-12">
       <h4>Tarefas</h4>
+      <a href='http://localhost/app-tasks/task/criar/'><button type="button" class="btn btn-primary">+ Adicionar</button></a>
       <div class="table-responsive">
         <table id="mytable" class="table table-bordred table-striped">
           <thead>

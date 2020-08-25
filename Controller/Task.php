@@ -36,6 +36,20 @@
             $this->trataView();
         }
 
+        public function criar()
+        {           
+            $this->view->edicao = true;
+            $this->view->task = (object) array(
+                'Assunto'       => null,
+                'Descricao'     => null,
+                'DataEntrega'   => date('Y-m-d'),
+                'IdTask'        => null
+
+            );
+            $this->view->propriedades = $this->propriedade->listar();
+            $this->view->render('TaskView');
+        }
+
         public function trataView() {
             $arrParam = explode('/', $_GET['path']);
             $idTask = $arrParam[2];
@@ -51,23 +65,20 @@
                 $this->view->render('TaskView');
             }
         }
-        
-        public function salvar()
+
+        public function salvar()        
         {   
             $dataEntrega = date("Y-m-d",strtotime(str_replace('/','-',$_POST['dataEntrega'])));
             
             if (empty(rtrim($_POST['assunto']))) {
-                echo "ERRO ASS";
                 exit;
             }
 
             if (empty(rtrim($_POST['descricao']))) {
-                echo "ERRO DESC";
                 exit;
             }
 
             if (empty(rtrim($_POST['dataEntrega']))) {
-                echo "ERRO DTENTR";
                 exit;
             }
 
@@ -75,10 +86,13 @@
             $this->task->assunto = $_POST['assunto'];
             $this->task->descricao = $_POST['descricao'];
             $this->task->dataEntrega = $dataEntrega;
-            $this->task->salvar();
+            $this->propriedade->idInserido = $this->task->salvar();
 
+            $this->propriedade->arrNome = isset($_POST['novoNomePropriedade']) ? $_POST['novoNomePropriedade'] : array();
+            $this->propriedade->arrValor = isset($_POST['novoValorPropriedade']) ? $_POST['novoValorPropriedade'] : array();
+            $this->propriedade->arrPropriedade = isset($_POST['propriedades']) ? $_POST['propriedades'] : array();
 
-            $this->propriedade->arrNome = isset($_POST['nomePropriedade']) ? $_POST['nomePropriedade'] : array() ;
+            $this->propriedade->idTask = $_POST['idTask'];
             $this->propriedade->salvarPropriedade();
            
         }

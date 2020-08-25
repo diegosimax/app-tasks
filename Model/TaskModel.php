@@ -27,13 +27,27 @@
 
         public function salvar()
         {
-            $this->query = "UPDATE task 
-                               SET Assunto = '{$this->assunto}',
-                                   Descricao = '{$this->descricao}',
-                                   DataEntrega = '{$this->dataEntrega}'
-                             WHERE IdTask = {$this->idTask}";
-
-            $this->execute();
+            if (!empty($this->idTask)) {
+                $this->query = "UPDATE task 
+                                   SET Assunto = '{$this->assunto}',
+                                       Descricao = '{$this->descricao}',
+                                       DataEntrega = '{$this->dataEntrega}'
+                                 WHERE IdTask = {$this->idTask}";
+                $this->execute();
+            } else {
+                $this->query = "INSERT INTO task 
+                                            (
+                                                `Assunto`, 
+                                                `Descricao`, 
+                                                `DataEntrega`
+                                            ) 
+                                     VALUES ('{$this->assunto}', 
+                                             '{$this->descricao}', 
+                                             '{$this->dataEntrega}'
+                                            )";
+                $this->execute();
+                return $this->conexao->lastInsertId();
+            }
         }
 
     }

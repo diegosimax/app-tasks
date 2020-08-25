@@ -9,17 +9,24 @@
         public $idPropriedade;
         public $nome;
         public $arrNome;
+        public $arrValor;
+        public $arrPropriedade;
+        public $idInserido;
 
         public function listar()
         {
+            $strAs = "'' AS Valor";
+            $strLeftJoin = "";
+            
             if (!empty($this->idTask)) {
-                $this->query = "SELECT P.IdPropriedade, P.Nome, TP.Valor
-                                  FROM task_propriedade TP
-                            INNER JOIN propriedade P ON (TP.IdPropriedade = P.IdPropriedade)
-                                 WHERE TP.IdTask = {$this->idTask}
-                              ORDER BY P.IdPropriedade ASC";
+                $strAs = "TP.Valor";
+                $strLeftJoin = " LEFT JOIN task_propriedade TP ON (TP.IdPropriedade = P.IdPropriedade AND TP.IdTask = {$this->idTask}) ";
             } 
 
+            $this->query = "SELECT P.IdPropriedade, P.Nome, " . $strAs .
+                            " FROM propriedade P " . $strLeftJoin .
+                         " ORDER BY P.IdPropriedade ASC";
+            
             $retorno = $this->getResult();
 
             if (!$retorno) {
@@ -30,18 +37,46 @@
 
         public function salvarPropriedade()
         {
-            foreach ($this->arrNome as $nome) {
-                $this->nome = $nome;
-                $retorno = $this->listarPropriedade();
-                if (empty($retorno)) {
-                    $arrInsert[] = "('" . $nome . "')";
+            //Salva propriedades existentes
+            foreach ($this->arrPropriedade as $idPropriedade => $valor) {
+                if (!empty($this->idTask)) {
+                    $this->query = "UPDATE task_propriedade 
+                                       SET `Valor` = '{$valor}' 
+                                     WHERE `IdTask` = {$this->idTask} 
+                                       AND `IdPropriedade` = {$idPropriedade}";
+                    $this->execute();
+                } else {
+                    $this->query = "INSERT INTO task_propriedade 
+                                               (`Valor`,
+                                                `IdTask`,
+                                                `IdPropriedade`)
+                                         VALUES('{$valor}',
+                                                {$this->idInserido},
+                                                {$idPropriedade})";
+                    $this->execute();
                 }
+               
             }
 
-            if (isset($arrInsert) && count($arrInsert) > 0) {
-                $txtInsert = join(', ', $arrInsert);
-                $this->query = "INSERT INTO propriedade (`Nome`) VALUES " . $txtInsert;
-                $this->execute();
+            //Salva propriedades criadas
+            foreach ($this->arrNome as $key => $nome) {
+                if (!empty(rtrim($nome))) {
+                    $this->nome = $nome;
+                    $retorno = $this->listarPropriedade();
+                     if (empty($retorno)) {
+                        $this->query = "INSERT INTO propriedade (`Nome`) VALUES ('{$this->nome}')";
+                        $this->execute();
+                        $idPropriedade = $this->conexao->lastInsertId();
+                        $this->query = "INSERT INTO task_propriedade 
+                                                    (`IdTask`, 
+                                                    `IdPropriedade`, 
+                                                    `Valor`) 
+                                             VALUES ({$this->idTask}, 
+                                                    {$idPropriedade}, 
+                                                    '{$this->arrValor[$key]}')";
+                        $this->execute();
+                    }
+                }
             }
         }
 
@@ -60,30 +95,6 @@
             return $retorno;
         }
 
-        public function listarPropriedadeIn()
-        {
-            foreach ($this->arrNome as $nome) {
-                $arrIn[] = "'" . $nome . "'";
-            }
-            $txtIn = join(', ', $arrIn);
-            
-
-
-            
-
-            $this->query = "SELECT P.IdPropriedade, P.Nome
-                              FROM propriedade P
-                             WHERE P.Nome = '{$this->nome}'";
-            
-            $retorno = $this->getResult();
-            
-            if (!$retorno) {
-                return array();
-            }
-            
-            return $retorno;
-        }
-       
     }
 
 ?> 

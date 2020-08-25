@@ -7,7 +7,7 @@
     class Model 
     {
 
-        private static $conexao;
+        public $conexao;
         public $query;
         public $table;
 
@@ -17,12 +17,12 @@
 
         private function getInstance()
         {
-            if (is_null(self::$conexao)) {
-                self::$conexao = new \PDO('mysql:host=localhost;port=;dbname=jestor_tasks', 'root', '');
-                self::$conexao->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-                self::$conexao->exec('set names utf8');
+            if (is_null($this->conexao)) {
+                $this->conexao = new \PDO('mysql:host=localhost;port=;dbname=jestor_tasks', 'root', '');
+                $this->conexao->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+                $this->conexao->exec('set names utf8');
             }
-            return self::$conexao;
+            return $this->conexao;
         }
 
         public function getResult()
@@ -35,17 +35,6 @@
                 }
             }
         }
-
-        // public function getColumns()
-        // {
-        //     if ($conexao = $this->getInstance()) {
-        //         $stmt = $conexao->prepare('SHOW COLUMNS FROM ' . $this->table);
-        //         if ($stmt->execute()){ 
-        //             $result = $stmt->fetchAll(PDO::FETCH_OBJ);
-        //             return $result;
-        //         }
-        //     }
-        // }
 
         public function execute()
         {
