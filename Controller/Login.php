@@ -1,7 +1,11 @@
 <?php
 
-    defined('APP_NAME') OR exit(utf8_encode('Voc� n�o tem acesso a esta aplica��o!'));
+    defined('APP_NAME') OR exit(utf8_encode('Você não tem acesso a esta aplicação!'));
 
+    /**
+    * Controller de Login
+    * @author Diego Simas
+    */
     class Login extends Controller
     {
 
@@ -19,7 +23,11 @@
             $this->view->render('Login');
         }
 
-        public function logarUsuario() 
+        /**
+        * Método responsável por logar o usuário na aplicação
+        * @author Diego Simas
+        */
+        public function logarUsuario()
         {
             $response = ['success' => false];
 
@@ -31,7 +39,7 @@
                     $response = ['success' => true];
                     $_SESSION['USER_LOGADO'] = $retorno[0]->Email;
                 } 
-            } 
+            }
 
             echo json_encode($response);
             exit;
@@ -40,4 +48,4 @@
 
     }
 
-?> 
+?>

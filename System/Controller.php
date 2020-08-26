@@ -1,13 +1,12 @@
 <?php
 
-    defined('APP_NAME') OR exit(utf8_encode('Você não tem acesso a esta aplicação!'));
+    defined('APP_NAME') OR exit(utf8_encode('VocÃª nÃ£o tem acesso a esta aplicaÃ§Ã£o!'));
 
     /**
-     * Controller do Motor da Aplicação
+     * Controller do Motor da AplicaÃ§Ã£o
      * @author Diego Simas
      */
-
-    class Controller 
+    class Controller
     {
         public function __construct()
         {

@@ -1,8 +1,8 @@
 # jestor-tasks-app
 
-Realizei a construÁ„o de um motor para o core da aplicaÁ„o. 
-Criei no motor os conceitos de rotas com dispatcher, URL amig·vel e o conceito de MVC (Model, View e Controller).
-No motor tambÈm fiz o mapeamento das classes respons·veis pelo MVC.
+Realizei a constru√ß√£o de um motor para o core da aplica√ß√£o.
+Criei no motor os conceitos de rotas com dispatcher, URL amig√°vel e o conceito de MVC (Model, View e Controller).
+No motor tamb√©m fiz o mapeamento das classes respons√°veis pelo MVC.
 
 ## SCRIPT DE BANCO
 
@@ -46,7 +46,7 @@ CREATE TABLE `propriedade` (
 
 LOCK TABLES `propriedade` WRITE;
 /*!40000 ALTER TABLE `propriedade` DISABLE KEYS */;
-INSERT INTO `propriedade` VALUES (1,'ObservaÁ„o'),(2,'Dia de Folga'),(23,'Cor Favorita'),(26,'MÍs'),(27,'Fruta'),(29,'Carro');
+INSERT INTO `propriedade` VALUES (1,'Observa√ß√£o'),(2,'Dia de Folga'),(23,'Cor Favorita'),(26,'M√™s'),(27,'Fruta'),(29,'Carro');
 /*!40000 ALTER TABLE `propriedade` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -72,7 +72,7 @@ CREATE TABLE `task` (
 
 LOCK TABLES `task` WRITE;
 /*!40000 ALTER TABLE `task` DISABLE KEYS */;
-INSERT INTO `task` VALUES (9,'FRONT-END','Realizar a construÁ„o do FRONT','2023-08-25');
+INSERT INTO `task` VALUES (9,'FRONT-END','Realizar a constru√ß√£o do FRONT','2023-08-25');
 /*!40000 ALTER TABLE `task` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -109,9 +109,9 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
-  `IdUser` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Id do Usu·rio.',
-  `Email` varchar(45) NOT NULL COMMENT 'E-mail do usu·rio.',
-  `Password` varchar(150) NOT NULL COMMENT 'Senha do Usu·rio criptografado em MD5.',
+  `IdUser` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Id do Usu√°rio.',
+  `Email` varchar(45) NOT NULL COMMENT 'E-mail do usu√°rio.',
+  `Password` varchar(150) NOT NULL COMMENT 'Senha do Usu√°rio criptografado em MD5.',
   PRIMARY KEY (`IdUser`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -138,7 +138,7 @@ UNLOCK TABLES;
 -- Dump completed on 2020-08-25 11:23:54
 ```
 
-## USU¡RIO E SENHA DA APLICA«√O
+## USU√ÅRIO E SENHA DA APLICA√á√ÉO
 ```
 Email -> diego@pop.com
 Senha -> jestor
@@ -149,11 +149,11 @@ Email -> antonio@globo.com
 Senha -> jestor2
 ```
 
-## ALTERAR O ARQUIVO index.php DA RAÕZ DO PROJETO
-``` 
-//Nome da AplicaÁ„o
+## ALTERAR O ARQUIVO index.php DA RA√çZ DO PROJETO
+```
+//Nome da Aplica√ß√£o
 define ('APP_NAME', 'Jestor Tasks');
-	
-//URL da AplicaÁ„o
+
+//URL da Aplica√ß√£o
 define ('APP_URL', 'http://localhost/app-tasks/');
 ```

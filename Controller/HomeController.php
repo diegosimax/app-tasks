@@ -1,17 +1,16 @@
 <?php
 
-    defined('APP_NAME') OR exit(utf8_encode('Você não tem acesso a esta aplicação!'));
+    defined('APP_NAME') OR exit(utf8_encode('VocÃª nÃ£o tem acesso a esta aplicaÃ§Ã£o!'));
 
     /**
-     * Controller Home do Motor da Aplicação
+     * Controller Home do Motor da AplicaÃ§Ã£o
      * @author Diego Simas
      */
-
     class HomeController extends Controller
     {
         public function index()
         {
-            //Primeira Página -> LOGIN Da Plataforma
+            //Primeira PÃ¡gina -> LOGIN Da Plataforma
             $this->view->render('Login');
         }
     }

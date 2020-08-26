@@ -1,14 +1,19 @@
 <?php
 
+	/**
+	 * PÃ¡gina que inicia o motor
+	 * @author Diego Simas
+	 */
+
 	session_start();
 
-	//Nome da Aplicação
+	//Nome da AplicaÃ§Ã£o
 	define ('APP_NAME', 'Jestor Tasks');
-	
-	//URL da Aplicação
+
+	//URL da AplicaÃ§Ã£o
 	define ('APP_URL', 'http://localhost/app-tasks/');
 
-	//Registro as classes para mapeamento padrão MVC
+	//Registro as classes para mapeamento padrÃ£o MVC
 	spl_autoload_register(function ($className) {
 		if (file_exists('System/' . $className . '.php')) {
 			require_once 'System/' . $className . '.php';

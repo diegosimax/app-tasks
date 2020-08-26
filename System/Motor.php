@@ -1,9 +1,9 @@
 <?php
 
-    defined('APP_NAME') OR exit(utf8_encode('Você não tem acesso a esta aplicação!'));
+    defined('APP_NAME') OR exit(utf8_encode('VocÃª nÃ£o tem acesso a esta aplicaÃ§Ã£o!'));
 
     /**
-     * Motor da Aplicação
+     * Motor da AplicaÃ§Ã£o
      * @author Diego Simas
      */
 
@@ -11,14 +11,14 @@
     {
 
         /**
-         * Método Construtor para o Motor da Aplicação
+         * MÃ©todo Construtor para o Motor da AplicaÃ§Ã£o
          * @author Diego Simas
          */
         public function __construct()
         {
             $error = false;
-            
-            //Estabele a rota 
+
+            //Estabele a rota
             if (isset($_GET['path'])) {
                 $tokens = explode('/', rtrim($_GET['path'], '/'));
                 //Dispatcher -> Verifica a URL requisitada e redireciona para o controller correto
@@ -28,18 +28,18 @@
                     if (!empty($tokens)) {
                         $actionName = array_shift($tokens);
                         if (method_exists($controller, $actionName)) {
-                            // Realiza a passagem de parâmetros caso exista ou nulo se não existir
+                            // Realiza a passagem de parÃ¢metros caso exista ou nulo se nÃ£o existir
                             $controller->{$actionName}($tokens);
                         } else {
-                            //404 -> Esta ação não existe
+                            //404 -> Esta aÃ§Ã£o nÃ£o existe
                             $error = true;
                         }
                     } else {
-                        //O default será sempre a index
+                        //O default serÃ¡ sempre a index
                         $controller->index();
                     }
                 } else {
-                    //404 -> Este controller não existe
+                    //404 -> Este controller nÃ£o existe
                     $error = true;
                 }
             } else {
@@ -48,7 +48,7 @@
                 $controller->index();
             }
 
-            //Página de ERRO
+            //PÃ¡gina de ERRO
             if ($error) {
                 $controllerName = 'Error404Controller';
                 $controller = new $controllerName;

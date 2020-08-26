@@ -1,22 +1,23 @@
 <?php
 
-    defined('APP_NAME') OR exit(utf8_encode('Você não tem acesso a esta aplicação!'));
+    defined('APP_NAME') OR exit(utf8_encode('VocÃª nÃ£o tem acesso a esta aplicaÃ§Ã£o!'));
 
      /**
-     * View do Motor da Aplicação
+     * View do Motor da AplicaÃ§Ã£o
      * @author Diego Simas
      */
-    class View 
+    class View
     {
 
         /**
-         * Método responsável por renderizar a view
+         * MÃ©todo responsÃ¡vel por renderizar a view
          * @author Diego Simas
          */
         public function render($viewPath)
         {
             require('View/' . $viewPath . '.php');
         }
+        
     }
 
-?> 
+?>

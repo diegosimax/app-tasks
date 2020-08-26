@@ -1,7 +1,11 @@
 <?php
 
-    defined('APP_NAME') OR exit(utf8_encode('Você não tem acesso a esta aplicação!'));
+    defined('APP_NAME') OR exit(utf8_encode('VocÃª nÃ£o tem acesso a esta aplicaÃ§Ã£o!'));
 
+    /**
+    * Model de Task
+    * @author Diego Simas
+    */
     class TaskModel extends Model
     {
 
@@ -28,28 +32,28 @@
         public function salvar()
         {
             if (!empty($this->idTask)) {
-                $this->query = "UPDATE task 
+                $this->query = "UPDATE task
                                    SET Assunto = '{$this->assunto}',
                                        Descricao = '{$this->descricao}',
                                        DataEntrega = '{$this->dataEntrega}'
                                  WHERE IdTask = {$this->idTask}";
                 $this->execute();
             } else {
-                $this->query = "INSERT INTO task 
+                $this->query = "INSERT INTO task
                                             (
-                                                `Assunto`, 
-                                                `Descricao`, 
+                                                `Assunto`,
+                                                `Descricao`,
                                                 `DataEntrega`
-                                            ) 
-                                     VALUES ('{$this->assunto}', 
-                                             '{$this->descricao}', 
+                                            )
+                                     VALUES ('{$this->assunto}',
+                                             '{$this->descricao}',
                                              '{$this->dataEntrega}'
                                             )";
                 $this->execute();
                 return $this->conexao->lastInsertId();
             }
         }
-        
+
         public function deletar()
         {
             $this->query = "DELETE FROM task WHERE IdTask = {$this->idTask}";
@@ -60,4 +64,4 @@
 
     }
 
-?> 
+?>

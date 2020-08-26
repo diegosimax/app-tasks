@@ -1,9 +1,13 @@
 <?php
 
-    defined('APP_NAME') OR exit(utf8_encode('Você não tem acesso a esta aplicação!'));
+    defined('APP_NAME') OR exit(utf8_encode('VocÃª nÃ£o tem acesso a esta aplicaÃ§Ã£o!'));
 
+    /**
+    * Controller de Task
+    * @author Diego Simas
+    */
     class Task extends Controller
-    {  
+    {
 
         public $task;
         public $propriedade;
@@ -25,7 +29,7 @@
         }
 
         public function visualizar()
-        {           
+        {
             $this->view->edicao = false;
             $this->trataView();
         }
@@ -37,7 +41,7 @@
         }
 
         public function criar()
-        {           
+        {
             $this->view->edicao = true;
             $this->view->task = (object) array(
                 'Assunto'       => null,
@@ -53,7 +57,7 @@
         public function trataView() {
             $arrParam = explode('/', $_GET['path']);
             $idTask = $arrParam[2];
-            
+
             $this->task->idTask = $idTask;
             $retorno = $this->task->listar();
 
@@ -66,10 +70,10 @@
             }
         }
 
-        public function salvar()        
-        {   
+        public function salvar()
+        {
             $dataEntrega = date("Y-m-d",strtotime(str_replace('/','-',$_POST['dataEntrega'])));
-            
+
             if (empty(rtrim($_POST['assunto']))) {
                 exit;
             }
@@ -94,11 +98,11 @@
 
             $this->propriedade->idTask = $_POST['idTask'];
             $this->propriedade->salvarPropriedade();
-           
+
         }
 
         public function excluir()
-        {           
+        {
             $this->task->idTask = isset($_POST['idTask']) ? $_POST['idTask'] : null;
             if (!is_null($this->task->idTask)) {
                 $this->task->deletar();
@@ -107,4 +111,4 @@
 
     }
 
-?> 
+?>
